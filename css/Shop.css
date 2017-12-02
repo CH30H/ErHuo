@@ -1,0 +1,51 @@
+header {
+  opacity: 0.95;
+}
+
+body {
+  background: url(../resource/background7.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+
+span {
+  float: right;
+}
+
+#wrap {
+  width: 100%;
+  margin: 10vh auto auto;
+}
+
+#list {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+	height: 820px;
+  opacity: 0.95;
+}
+
+#menu {
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+/*
+#pddisplay {
+  height: 600px;
+}
+*/
+.cell {
+	height: 120px;
+}
+
+.panel-group {
+  margin: 0;
+}
+
+.panel-body {
+  padding: 0;
+}
+
+.list-group {
+  margin: 0;
+}

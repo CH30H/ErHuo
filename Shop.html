@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Shop</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/Shop.css">
+</head>
+
+<body>
+<header>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header"> <a class="navbar-brand">ErHuo</a> </div>
+      <div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Shop</a></li>
+          <li><a href="#">My Products</a></li>
+        </ul>
+      </div>
+      <div style="float: right">
+        <ul class="nav navbar-nav">
+          <li><a href="#">I Wanna Sell</a></li>
+          <li><a href="#">My Info</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container" id="wrap">
+  <div class="row">
+    <div class="container col-md-2" id="menu">
+      <div class="panel-group" id="menuPanel">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#menuPanel" href="#bookCate"> Book </a><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> </h4>
+          </div>
+          <div id="bookCate" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="list-group"> <a href="#" class="list-group-item"> Textbook</a> <a href="#" class="list-group-item">Foreign Language</a> <a href="#" class="list-group-item">Art</a> <a href="#" class="list-group-item">Novel</a> <a href="#" class="list-group-item">Magazine</a> <a href="#" class="list-group-item">Manga</a> <a href="#" class="list-group-item"> Reference Book</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#menuPanel" href="#EPCate" > Electronic Product </a><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> </h4>
+          </div>
+          <div id="EPCate" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="list-group"> <a href="#" class="list-group-item">Mobile Phone</a> <a href="#" class="list-group-item">Laptop</a> <a href="#" class="list-group-item">Tablet</a> <a href="#" class="list-group-item">Camera</a> <a href="#" class="list-group-item">Peripheral</a> <a href="#" class="list-group-item">PC Component</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#menuPanel" href="#TicketCate"> Ticket </a><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> </h4>
+          </div>
+          <div id="TicketCate" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="list-group"> <a href="#" class="list-group-item">Movie Ticket</a> <a href="#" class="list-group-item">Concert Ticket</a> <a href="#" class="list-group-item">Art</a> <a href="#" class="list-group-item">Exhibition Ticket</a> <a href="#" class="list-group-item">Comics Show Ticket</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#menuPanel" href="#">Commodity</a> </h4>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#menuPanel" href="#">Other</a></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="container col-md-8" id="list">
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+          <form class="form-inline">
+            <input type="text" class="form-control" placeholder="Input Keywords">
+            <button type="button" class="btn btn-default" id="search">Search</button>
+          </form>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2"> Sort By:
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select <span class="caret"></span> </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Time</a></li>
+              <li><a href="#">Price</a></li>
+              <li><a href="#">Newness</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="pddisplay">
+        <div class="container-fluid">
+          <div class="cell row" id="cell1">
+            <div class="container col-md-1">This is a Pic</div>
+            <div class="container col-md-2">
+              <h3>IphoneX</h3>
+              <h5>Price: 1000$</h5>
+              <h5>Newness: 10</h5>
+              <h5><small>cate1-cate2</small></h5>
+            </div>
+            <div class="container col-md-9">
+              <p>Description is here: Description is here: Description is here:</p>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="cell row" id="cell2">
+            <div class="container col-md-1">This is a Pic</div>
+            <div class="container col-md-2">
+              <h3>IphoneX</h3>
+              <h5>Price: 1000$</h5>
+              <h5>Newness: 10</h5>
+              <h5><small>cate1-cate2</small></h5>
+            </div>
+            <div class="container col-md-9">
+              <p>Description is here: Description is here: Description is here:</p>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="cell row" id="cell3">
+            <div class="container col-md-1">This is a Pic</div>
+            <div class="container col-md-2">
+              <h3>IphoneX</h3>
+              <h5>Price: 1000$</h5>
+              <h5>Newness: 10</h5>
+              <h5><small>cate1-cate2</small></h5>
+            </div>
+            <div class="container col-md-9">
+              <p>Description is here: Description is here: Description is here:</p>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="cell row" id="cell4">
+            <div class="container col-md-1">This is a Pic</div>
+            <div class="container col-md-2">
+              <h3>IphoneX</h3>
+              <h5>Price: 1000$</h5>
+              <h5>Newness: 10</h5>
+              <h5><small>cate1-cate2</small></h5>
+            </div>
+            <div class="container col-md-9">
+              <p>Description is here: Description is here: Description is here:</p>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="cell row" id="cell5">
+            <div class="container col-md-1">This is a Pic</div>
+            <div class="container col-md-2">
+              <h3>IphoneX</h3>
+              <h5>Price: 1000$</h5>
+              <h5>Newness: 10</h5>
+              <h5><small>cate1-cate2</small></h5>
+            </div>
+            <div class="container col-md-9">
+              <p>Description is here: Description is here: Description is here:</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center" id="page">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li> <a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+<script src="js/jquery.min.js"></script> 
+<script src="bootstrap/js/bootstrap.min.js"></script> 
+<script src="js/Shop.js"></script>
+</body>
+</html>

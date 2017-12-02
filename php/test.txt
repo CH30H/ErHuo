@@ -1,0 +1,8 @@
+hello2
+1512011181mysqli_result::__set_state(array(
+   'current_field' => NULL,
+   'field_count' => NULL,
+   'lengths' => NULL,
+   'num_rows' => NULL,
+   'type' => NULL,
+))judy@pku.edu.cnjudythe user has been checked0judy@pku.edu.cnjudythe user has been checked0

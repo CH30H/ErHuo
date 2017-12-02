@@ -1,0 +1,35 @@
+header {
+  opacity: 0.95;
+}
+
+body {
+  background: url(../resource/matt-hoffman-277877.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+
+.wrap {
+  margin: 3vh auto auto;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  width: 50vw;
+  opacity: 0.95;
+  background: white;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.block {
+  margin: 3vh auto auto;
+  padding: 20px;
+}
+
+#photo {
+  margin: 0;
+  height: 25vw;
+  overflow: hidden; 
+}
+
+#buy {
+  width: 300px;
+  margin:20px auto 0;
+}

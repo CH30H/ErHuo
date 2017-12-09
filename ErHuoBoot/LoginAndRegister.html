@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LoginAndRegister</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/LoginAndRegister.css">
+</head>
+
+<body>
+<div class="container" id="wrap">
+  <h2 class="text-center">ErHuo</h2>
+  <br>
+  <div id="registerForm">
+    <div class="form-group">
+      <label for="remail">PKU Email</label>
+      <input type="email" class="form-control" id="remail" placeholder="PKU Email">
+    </div>
+    <div class="form-group">
+      <label for="rpasswd">Password</label>
+      <input type="password" class="form-control" id="rpasswd" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <label for="rnick">Nickname</label>
+      <input type="text" class="form-control" id="rnick" placeholder="Nickname">
+    </div>
+    <div class="form-group">
+      <label for="rwechat">WeChat</label>
+      <input type="text" class="form-control" id="rwechat" placeholder="WeChat">
+    </div>
+    <button class="btn btn-info btn-block" id="regButton">Register</button>
+    <p class="text-center tip"><small>Already registered? <a href="#">Sign In</a></small></p>
+  </div>
+  <div id="loginForm">
+    <div class="form-group">
+      <label for="lemail">PKU Email</label>
+      <input type="email" class="form-control" id="lemail" placeholder="PKU Email">
+    </div>
+    <div class="form-group">
+      <label for="lpasswd">Password</label>
+      <input type="password" class="form-control" id="lpasswd" placeholder="Password">
+    </div>
+    <button class="btn btn-info btn-block" id="loginButton">Login</button>
+    <p class="text-center tip"><small>Not registered? <a href="#">Create an account</a></small></p>
+  </div>
+</div>
+<script src="js/jquery.min.js"></script> 
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/LoginAndRegister.js"></script>
+</body>
+</html>

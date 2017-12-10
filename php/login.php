@@ -29,10 +29,10 @@ if(!$con)		// fail to connect mysql
 	die();  
 }
 
-// check the uid and password
+// check the uid and password in User
 $status = 1;	// user not exist
-$sql = "SELECT uid, passwd FROM User WHERE uid = '{$uid}';";
-if($result = mysqli_query($con, $sql))
+$active_sql = "SELECT uid, passwd FROM User WHERE uid = '{$uid}';";
+if($result = mysqli_query($con, $active_sql))
 {
 	if(mysqli_num_rows($result))		// user exist
 	{
@@ -45,6 +45,26 @@ if($result = mysqli_query($con, $sql))
 		else						// password wrong
 		{
 			$status = 2;
+		}
+	}
+	else								// user don't exist in User
+	{
+		$inactive_sql = "SELECT uid, passwd FROM InactiveUser WHERE uid = '{$uid}';";// try to find it in InactiveUser
+		if($result = mysqli_query($con, $inactive_sql))
+		{
+			if(mysqli_num_rows($result))		// user exist in InactiveUser
+			{
+				$status = 5;					// remind the user to active the account
+				// send the email again or not????
+			}
+		}
+		else
+		{
+			$status = 4;
+			$arr = array('status'=>$status);
+			$json_b2f = json_encode($arr);
+			echo $json_b2f;
+			die();
 		}
 	}
 	file_put_contents("test.txt", "the user has been checked", FILE_APPEND);

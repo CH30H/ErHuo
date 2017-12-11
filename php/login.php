@@ -51,14 +51,14 @@ if(!$con)		// fail to connect mysql
 
 // check the uid and password in User
 $status = 1;	// user not exist
-$active_sql = "SELECT uid, passwd FROM User WHERE uid = '{$uid}';";
+$active_sql = "SELECT uid, passwd, salt FROM User WHERE uid = '{$uid}';";
 if($result = mysqli_query($con, $active_sql))
 {
 	if(mysqli_num_rows($result))		// user exist
 	{
 		$row = mysqli_fetch_assoc($result);
-		//$salt = $row["salt"];
-		//$passwd = sha1($passwd.$salt);
+		$salt = $row["salt"];
+		$passwd = sha1($passwd.$salt);
 		if($passwd == $row["passwd"])
 		{
 			$status = 0;			// login successfully, set cookie

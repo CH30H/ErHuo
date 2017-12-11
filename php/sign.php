@@ -79,10 +79,15 @@ if($result = mysqli_query($con, $checksql))
 			}
 			else								// user not exist, insert a user
 			{
+				//echo $passwd."\n";
+				$salt = base64_encode(mcrypt_create_iv(32, MCRYPT_DEV_RANDOM));
+				$passwd = sha1($passwd.$salt);
+				//echo $salt."\n";
+				//echo $passwd."\n";
 				$sql = "INSERT INTO InactiveUser (uid, passwd, username, school, gender,
-						grade, tel, wechatID, qq) VALUES ('{$uid}', '{$passwd}', 
+						grade, tel, wechatID, qq, salt) VALUES ('{$uid}', '{$passwd}', 
 						'{$username}', {$school}, {$gender}, {$grade}, '{$tel}', 
-						'{$wechatID}', '{$qq}');";
+						'{$wechatID}', '{$qq}', '{$salt}');";
 				mysqli_query($con, $sql);
 				
 				// !!!send email

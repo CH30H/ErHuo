@@ -7,10 +7,10 @@ $('.tip a').click(function () {
 
 $('#loginButton').click(function () {
 	var public_key = '-----BEGIN PUBLIC KEY-----\
-	MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3//sR2tXw0wrC2DySx8vNGlqt\
-	3Y7ldU9+LBLI6e1KS5lfc5jlTGF7KBTSkCHBM3ouEHWqp1ZJ85iJe59aF5gIB2kl\
-	Bd6h4wrbbHA2XE1sq21ykja/Gqx7/IRia3zQfxGv/qEkyGOx+XALVoOlZqDwh76o\
-	2n1vP1D+tD3amHsK7QIDAQAB\
+	MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDnPDaP0OezUiHniz29VrVLp4+E\
+	jXTSw6I/RqKaSbsuVvoPUznmlUDvTFWC6cPi75kUGoObwvIpdixXoAeKMcgEvMTe\
+	4PwyeljVq6DQmRSwj94/fGuE/IEE6TriSDlYkK6dTJJLkzzZm/cxIlRmxh52EAge\
+	fweYmWVNZ8MjcvRT9wIDAQAB\
 	-----END PUBLIC KEY-----';
 	var key = RSA.getPublicKey(public_key);
 	var encrypted_passwd = RSA.encrypt($('#lpasswd').val(), key);
@@ -32,10 +32,10 @@ $('#loginButton').click(function () {
 
 $('#regButton').click(function () {
 	var public_key = '-----BEGIN PUBLIC KEY-----\
-	MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3//sR2tXw0wrC2DySx8vNGlqt\
-	3Y7ldU9+LBLI6e1KS5lfc5jlTGF7KBTSkCHBM3ouEHWqp1ZJ85iJe59aF5gIB2kl\
-	Bd6h4wrbbHA2XE1sq21ykja/Gqx7/IRia3zQfxGv/qEkyGOx+XALVoOlZqDwh76o\
-	2n1vP1D+tD3amHsK7QIDAQAB\
+	MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDnPDaP0OezUiHniz29VrVLp4+E\
+	jXTSw6I/RqKaSbsuVvoPUznmlUDvTFWC6cPi75kUGoObwvIpdixXoAeKMcgEvMTe\
+	4PwyeljVq6DQmRSwj94/fGuE/IEE6TriSDlYkK6dTJJLkzzZm/cxIlRmxh52EAge\
+	fweYmWVNZ8MjcvRT9wIDAQAB\
 	-----END PUBLIC KEY-----';
 	var key = RSA.getPublicKey(public_key);
 	var encrypted_passwd = RSA.encrypt($('#rpasswd').val(), key);

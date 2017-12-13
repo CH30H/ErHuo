@@ -17,11 +17,11 @@ $( document ).ready(function() {
     var gid;
     gid = Request['gid'];
 
-    // a test sentence
-    alert("Get gid = " + gid);
+    // // a test sentence
+    // alert("Get gid = " + gid);
 
-    // a test sentence
-    document.getElementById("photo1").src = "resource/sample3.jpg";
+    // // a test sentence
+    // document.getElementById("photo1").src = "resource/sample3.jpg";
 
     $.ajax({
         type: 'post',
@@ -30,17 +30,52 @@ $( document ).ready(function() {
         success: function (data) {
             var info = JSON.parse(data);
             if (info.status == 0) {
-                document.getElementById('标签id').innerHTML = '要修改的文本内容';
+                document.getElementById('goodsphoto1').src = info.goodsphoto1;
+                document.getElementById('goodsphoto2').src = info.goodsphoto2;
+                document.getElementById('goodsphoto3').src = info.goodsphoto3;
+                document.getElementById('goodsname').innerHTML = info.goodsname;
+                document.getElementById('newness').innerHTML = "出价： ￥" + info.price;
+                document.getElementById('newness').innerHTML = "新旧程度： " + info.newness;
             }
             if (info.status == 1) {
                 alert("该商品已下架！");
             }
+        },
+        error: function (xhr) {
+            alert(JSON.stringify(xhr));
         }
     });
 });
 
 $('#buy').click(function () {
-    document.getElementById("photo2").src = "resource/sample3.jpg";
+    // document.getElementById("photo2").src = "resource/sample3.jpg";
+    var Request = new Object();
+    Request = GetRequest();
+    var gid;
+    gid = Request['gid'];
+    $.ajax({
+        type: 'post',
+        url: 'php/buy.php',
+        data: {"gid" : gid},
+        success: function (data) {
+            var obj = JSON.parse(data);
+            if(obj.status == 0) {
+                alert("您的购买请求已经发送给卖家，请等候卖家邮件回复！");
+            }
+            if(status == 1) {
+                alert("该商品已下架，请挑选其他商品！");
+            }
+            if(status == 2) {
+                alert("登录超时，请重新登录！");
+            }
+            if(status == 3) {
+                alert("系统异常...");
+            }
+        },
+        error: function (xhr) {
+            alert(JSON.stringify(xhr));
+        }
+    });
 // 	var fd = new FormData();
 //     alert(fd);
 // 	fd.append('name', $('#name').val());

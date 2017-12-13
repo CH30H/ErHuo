@@ -6,9 +6,9 @@ function sendmail($to, $subject, $body){
 //	use PHPMailer\PHPMailer\Exception;
 
 	//这里需要保证src目录的相对路径
-	require 'src/Exception.php';
-	require 'src/PHPMailer.php';
-	require 'src/SMTP.php';
+	require_once 'src/Exception.php';
+	require_once 'src/PHPMailer.php';
+	require_once 'src/SMTP.php';
         //echo 'get';
 	$mail = new PHPMailer(true);
 	$mail->Charset = 'UTF-8';

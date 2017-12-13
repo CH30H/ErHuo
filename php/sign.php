@@ -98,9 +98,9 @@ if($result = mysqli_query($con, $checksql))
 						$change_sql = "UPDATE InactiveUser SET regCount = '{$regcount}' WHERE uid = '{$uid}';";
 						mysqli_query($con, $change_sql);
 						
-						$file_url = $_SERVER['SCRIPT_FILENAME'];
+						$file_url = $_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
 						$dir_url = dirname($file_url);
-						$url = $dir_url."/active.php?uid=".$uid."&token=".$token;
+						$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 						
 						// !!!send again						
 						$mail_message = $mail_message1.$url.$mail_message2;
@@ -120,9 +120,9 @@ if($result = mysqli_query($con, $checksql))
 					mysqli_query($con, $change_sql);
 					
 					// !!!send new mail again
-					$file_url = $_SERVER['SCRIPT_FILENAME'];
+					$file_url = $_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
 					$dir_url = dirname($file_url);
-					$url = $dir_url."/active.php?uid=".$uid."&token=".$token;
+					$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 					
 					// !!!send again						
 					$mail_message = $mail_message1.$url.$mail_message2;
@@ -142,9 +142,9 @@ if($result = mysqli_query($con, $checksql))
 				//echo $salt."\n";
 				//echo $passwd."\n";
 				
-				$file_url = $_SERVER['SCRIPT_FILENAME'];
+				$file_url = $_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
 				$dir_url = dirname($file_url);
-				$url = $dir_url."/active.php?uid=".$uid."&token=".$token;
+				$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 				//echo $url;
 				
 				$sql = "INSERT INTO InactiveUser (uid, passwd, username, school, gender,

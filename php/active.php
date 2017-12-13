@@ -1,6 +1,8 @@
 <?php
 $token = $_GET['token'];
 $uid = $_GET['uid'];
+//file_put_contents("test_active.txt", $uid, FILE_APPEND);
+//file_put_contents("test_active.txt", $token, FILE_APPEND);
 
 // connect mysql
 $mysql_server_name = 'localhost';
@@ -27,7 +29,7 @@ if($result = mysqli_query($con, $checksql))
 	{
 		$row = mysqli_fetch_assoc($result);
 		$check_token = $row["token"];
-		$regtime = $row["regtime"];
+		$regtime = $row["regTime"];
 		date_default_timezone_set("PRC");
 		$nowtime = time();
 		if($check_token == $token)		// right
@@ -49,10 +51,12 @@ if($result = mysqli_query($con, $checksql))
 						'{$username}', {$school}, {$gender}, {$grade}, '{$tel}', 
 						'{$wechatID}', '{$qq}', '{$salt}');";
 				mysqli_query($con, $insert_sql);
+				//echo $insert_sql;
 				
 				// delete the line in InactiveUser
 				$delete_sql = "DELETE FROM InactiveUser WHERE uid = '{$uid}';";
 				mysqli_query($con, $delete_sql);
+				//echo $delete_sql;
 				
 				setcookie("uid", $uid, $nowtime + 3600 * 24);
 				echo "Active successfully!";				

@@ -1,6 +1,8 @@
 <?php
 $token = $_GET['token'];
 $uid = $_GET['uid'];
+//file_put_contents("test_active.txt", $uid, FILE_APPEND);
+//file_put_contents("test_active.txt", $token, FILE_APPEND);
 
 // connect mysql
 $mysql_server_name = 'localhost';
@@ -15,7 +17,7 @@ if(!$con)		// fail to connect mysql
 	$arr = array('status'=>$status);
 	$json_b2f = json_encode($arr);
 	echo $json_b2f;*/
-	echo "Sorry, connect failed!";
+	echo "对不起，连接失败！请重新尝试连接。";
 	die();  
 }
 
@@ -27,7 +29,7 @@ if($result = mysqli_query($con, $checksql))
 	{
 		$row = mysqli_fetch_assoc($result);
 		$check_token = $row["token"];
-		$regtime = $row["regtime"];
+		$regtime = $row["regTime"];
 		date_default_timezone_set("PRC");
 		$nowtime = time();
 		if($check_token == $token)		// right
@@ -49,31 +51,38 @@ if($result = mysqli_query($con, $checksql))
 						'{$username}', {$school}, {$gender}, {$grade}, '{$tel}', 
 						'{$wechatID}', '{$qq}', '{$salt}');";
 				mysqli_query($con, $insert_sql);
+				//echo $insert_sql;
 				
 				// delete the line in InactiveUser
 				$delete_sql = "DELETE FROM InactiveUser WHERE uid = '{$uid}';";
 				mysqli_query($con, $delete_sql);
+				//echo $delete_sql;
 				
 				setcookie("uid", $uid, $nowtime + 3600 * 24);
-				echo "Active successfully!";				
+				echo "激活成功!";
+				header("refresh:2;url = ../Shop.html");
+				exit;
 			}
 			else						// out of date
 			{
-				echo "Sorry, the link is invalid now. Please register again.";
+				echo "对不起，链接已失效，请重新注册帐号。";
 				// !!!maybe we can jump to the LoginAndRegister.html after 5s
-				die();
+				header("refresh:2;url = ../LoginAndRegister.html");
+				exit;
 			}
 		}
 		else
 		{
-			echo "Sorry, the parameter is invalid.";
-			die();
+			echo "对不起，该链接无效。";
+			header("refresh:2;url = ../LoginAndRegister.html");
+			exit;
 		}
 	}
 	else								// don't exist in InactiveUser
 	{
-		echo "Sorry, the parameter is invalid.";
-		die();
+		echo "对不起，该链接无效。";
+		header("refresh:2;url = ../LoginAndRegister.html");
+		exit;
 	}
 }
 else
@@ -82,7 +91,7 @@ else
 	$arr = array('status'=>$status);
 	$json_b2f = json_encode($arr);
 	echo $json_b2f;*/
-	echo "Sorry, the command of mysql has something wrong!";
+	echo "对不起，连接失败！请重新尝试连接。";
 	die();
 }
 ?>

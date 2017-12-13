@@ -109,7 +109,7 @@ if($result = mysqli_query($con, $checksql))
 				}
 				else	// out of a day, renew
 				{
-					$regcount = 3;
+					$regcount = 2;
 					$regtime = $nowtime;					
 					// new token
 					$token = md5($uid.$passwd.$regtime);
@@ -137,7 +137,7 @@ if($result = mysqli_query($con, $checksql))
 				
 				date_default_timezone_set("PRC");
 				$regtime = time();
-				$regcount = 3;
+				$regcount = 2;
 				$token = md5($uid.$passwd.$regtime);// use to active
 				//echo $salt."\n";
 				//echo $passwd."\n";

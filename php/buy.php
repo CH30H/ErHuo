@@ -8,6 +8,8 @@ $username = 'group3';
 $passwd = 'group3';
 $database = 'group3';
 
+//setcookie("uid", '1055734930@qq.com', time() + 3600 * 24);
+
 //check if cookie is wrong
 if (!isset($_COOKIE["uid"]))		
 {
@@ -19,6 +21,7 @@ if (!isset($_COOKIE["uid"]))
 
 else{
 	$buyer_uid = $_COOKIE['uid'];
+	//echo $buyer_uid;
 }
 
 //get gid from front end
@@ -103,6 +106,8 @@ if(!$is_selled){
 		 $buyer_tel = $row["tel"];
 
 	}
+	//echo $buyer_name;
+	//echo $buyer_tel;
 	//select seller's username and buyer's username
 	$seller_name_query = "SELECT username, tel
 			  FROM User
@@ -159,8 +164,3 @@ echo json_encode($arr);
 mysqli_close($conn);
 
 ?>
-
-
-
-
-

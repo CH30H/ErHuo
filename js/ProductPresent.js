@@ -40,7 +40,7 @@ $( document ).ready(function() {
 });
 
 $('#buy').click(function () {
-    
+    document.getElementById("photo2").src = "resource/sample3.jpg";
 // 	var fd = new FormData();
 //     alert(fd);
 // 	fd.append('name', $('#name').val());

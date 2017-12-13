@@ -20,9 +20,13 @@ $('#loginButton').click(function () {
 		data: {uid: $('#lemail').val(), passwd: encrypted_passwd},
 		success: function(data) {
 			var obj = JSON.parse(data);
-			if (obj.status === 0) { alert("登录成功！"); }
-			if (obj.status === 1) { alert("用户名不存在！"); }
-			if (obj.status === 2) { alert("密码错误！"); }
+			if (obj.status === 0) { 
+				alert("登录成功！"); 
+				self.location = "Shop.html";
+			}
+			else if (obj.status === 1) { alert("用户名不存在！"); }
+			else if (obj.status === 2) { alert("密码错误！"); }
+			else { alert("数据库连接出错..."); }
 		},
 		error: function(xhr) {
 			alert(JSON.stringify(xhr));
@@ -47,10 +51,15 @@ $('#regButton').click(function () {
 		success: function(data) {
 			var obj = JSON.parse(data);
 			if (obj.status === 0) {
-				alert('注册成功!');
-				self.location = "Shop.html"; 
+				alert('注册成功!请前往pku邮箱验证~');
+				self.location = "http://mail.pku.edu.cn"; 
 			}
-			if (obj.status === 1) { alert('邮箱已存在!'); }
+			else if (obj.status === 1) { alert('邮箱已存在!'); }
+			else if (obj.status === 2) {
+				alert('您之前的注册还没有激活呢，请前往pku邮箱验证~');
+				self.location = "http://mail.pku.edu.cn"; 
+			}
+			else { alert("数据库连接出错..."); }
 		},
 		error: function(xhr) {
 			alert(JSON.stringify(xhr));

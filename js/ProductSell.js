@@ -55,10 +55,18 @@ $('#submit').click(function () {
 		success: function (data) {
 			var obj = JSON.parse(data);
 			if (obj.status === 0) {
-				alert("上传成功！");
+				alert("上传成功！点击确定返回商品浏览页面");
+				self.location = "Shop.html";
 			}
-			if (obj.status === 1) {
+			else if (obj.status === 1) {
 				alert("上传失败！");
+			}
+			else if (obj.status === 2) {
+				alert("登录超时，请重新登录");
+				self.location = "LoginAndRegister.html";
+			}
+			else if (obj.status === 3) {
+				alert("未知的错误...");
 			}
 		},
 		error: function (xhr) {

@@ -36,22 +36,20 @@ while($row = mysqli_fetch_array($result)){
 	//contain all information for good
 	$good_info = array();
 	$json_good_info = array();
-	
+
+	//status 0: not sold, 1: sold, 2:other failures	
 	//check if good's been sold
 	$good_info['selled'] = $row['selled'];
 	if($good_info['selled']){
 		$status = 1;
-		$arr = array('status'=>$status);
-        	echo json_encode($arr);
-		break;
 	}
 
-	//return status
-	$status = 0;
-	$arr = array('status'=>$status);
-   	echo json_encode($arr);
+	else{
+		$status = 0;
+	}
 
 	//assignment
+	$good_info['status'] = $status;
 	$good_info['gid'] = $gid;
 	$good_info['goodsname'] = $row['goodsname'];
 	$good_info['uid'] = $row['uid'];

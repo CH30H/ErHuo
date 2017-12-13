@@ -25,7 +25,7 @@ $( document ).ready(function() {
 
     $.ajax({
         type: 'post',
-        url:  'php/productinfo.php',
+        url:  'php/goodinfo.php',
         data: {'gid': gid},
         success: function (data) {
             var info = JSON.parse(data);

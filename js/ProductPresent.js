@@ -28,13 +28,14 @@ $( document ).ready(function() {
         url:  'php/goodinfo.php',
         data: {'gid': gid},
         success: function (data) {
+            alert(data);
             var info = JSON.parse(data);
             if (info.status == 0) {
                 document.getElementById('goodsphoto1').src = info.goodsphoto1;
                 document.getElementById('goodsphoto2').src = info.goodsphoto2;
                 document.getElementById('goodsphoto3').src = info.goodsphoto3;
                 document.getElementById('goodsname').innerHTML = info.goodsname;
-                document.getElementById('newness').innerHTML = "出价： ￥" + info.price;
+                document.getElementById('price').innerHTML = "出价： ￥" + info.price;
                 document.getElementById('newness').innerHTML = "新旧程度： " + info.newness;
             }
             else if (info.status == 1) {

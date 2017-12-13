@@ -63,17 +63,18 @@ $('#buy').click(function () {
         url: 'php/buy.php',
         data: {"gid" : gid},
         success: function (data) {
+            alert(data);
             var obj = JSON.parse(data);
             if(obj.status == 0) {
                 alert("您的购买请求已经发送给卖家，请等候卖家邮件回复！");
             }
-            else if(status == 1) {
+            else if(obj.status == 1) {
                 alert("该商品已下架，请挑选其他商品！");
             }
-            else if(status == 2) {
+            else if(obj.status == 2) {
                 alert("登录超时，请重新登录！");
             }
-            // if(status == 3) {
+            // if(obj.status == 3) {
             else {    
                 alert("系统异常...");
             }

@@ -46,7 +46,7 @@ $qq = "0";
 
 // mail message
 $mail_subject = "【二货】注册邮箱验证";
-$mail_to = "1400012782@pku.edu.cn";//$uid;
+$mail_to = $uid;
 $mail_message1 = $username."，您好：<br>"."    感谢您使用二货二手物品交易平台！请点击如下链接，以完成注册：<br>		";
 $mail_message2 = "<br>		（如果不能点击该链接地址，请复制并粘贴到浏览器的地址输入框）
 								<br><br>								二货二手物品交易平台<br>								".date("Y-m-d");

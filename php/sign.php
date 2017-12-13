@@ -113,11 +113,19 @@ if($result = mysqli_query($con, $checksql))
 					$regtime = $nowtime;					
 					// new token
 					$token = md5($uid.$passwd.$regtime);
+					
+					$salt = base64_encode(mcrypt_create_iv(32, MCRYPT_DEV_RANDOM));
+					$passwd = sha1($passwd.$salt);
+					
 					// restore in mysql
+					$delete_sql = "DELETE FROM InactiveUser WHERE uid = '{$uid}';";
+					mysqli_query($con, $delete_sql);
 
-					$change_sql = "UPDATE InactiveUser SET regCount = '{$regcount}', regTime = '{$regtime}',
-									token = '{$token}' WHERE uid = '{$uid}';";
-					mysqli_query($con, $change_sql);
+					$insert_sql = "INSERT INTO InactiveUser (uid, passwd, username, school, gender,
+							grade, tel, wechatID, qq, salt, regTime, regCount, token) VALUES ('{$uid}', '{$passwd}', 
+							'{$username}', {$school}, {$gender}, {$grade}, '{$tel}', 
+							'{$wechatID}', '{$qq}', '{$salt}', '{$regtime}', '{$regcount}', '{$token}');";
+					mysqli_query($con, $insert_sql);
 					
 					// !!!send new mail again
 					$file_url = $_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];

@@ -17,7 +17,7 @@ if(!$con)		// fail to connect mysql
 	$arr = array('status'=>$status);
 	$json_b2f = json_encode($arr);
 	echo $json_b2f;*/
-	echo "Sorry, connect failed!";
+	echo "对不起，连接失败！请重新尝试连接。";
 	die();  
 }
 
@@ -59,25 +59,30 @@ if($result = mysqli_query($con, $checksql))
 				//echo $delete_sql;
 				
 				setcookie("uid", $uid, $nowtime + 3600 * 24);
-				echo "Active successfully!";				
+				echo "激活成功!";
+				header("refresh:2;url = ../Shop.html");
+				exit;
 			}
 			else						// out of date
 			{
-				echo "Sorry, the link is invalid now. Please register again.";
+				echo "对不起，链接已失效，请重新注册帐号。";
 				// !!!maybe we can jump to the LoginAndRegister.html after 5s
-				die();
+				header("refresh:2;url = ../LoginAndRegister.html");
+				exit;
 			}
 		}
 		else
 		{
-			echo "Sorry, the parameter is invalid.";
-			die();
+			echo "对不起，该链接无效。";
+			header("refresh:2;url = ../LoginAndRegister.html");
+			exit;
 		}
 	}
 	else								// don't exist in InactiveUser
 	{
-		echo "Sorry, the parameter is invalid.";
-		die();
+		echo "对不起，该链接无效。";
+		header("refresh:2;url = ../LoginAndRegister.html");
+		exit;
 	}
 }
 else
@@ -86,7 +91,7 @@ else
 	$arr = array('status'=>$status);
 	$json_b2f = json_encode($arr);
 	echo $json_b2f;*/
-	echo "Sorry, the command of mysql has something wrong!";
+	echo "对不起，连接失败！请重新尝试连接。";
 	die();
 }
 ?>

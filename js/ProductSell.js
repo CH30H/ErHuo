@@ -34,7 +34,6 @@ $('#mainCate').change(function () {
 
 $('#submit').click(function () {
 	var fd = new FormData();
-  alert(fd);
 	fd.append('name', $('#name').val());
 	fd.append('price', $('#price').val());
 	fd.append('newness', $('#newness').val());
@@ -44,10 +43,8 @@ $('#submit').click(function () {
 	fd.append('photo2', $('#photo2')[0].files[0]);
 	fd.append('photo3', $('#photo3')[0].files[0]);
 	fd.append('description', $('#description').val());
-  alert(fd);
 	$.ajax({
 		type: 'post',
-		/* ? */
 		url: 'php/sell.php',
 		data: fd,
     processData:false,   //  告诉jquery不要处理发送的数据

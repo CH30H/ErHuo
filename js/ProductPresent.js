@@ -28,7 +28,7 @@ $( document ).ready(function() {
         url:  'php/goodinfo.php',
         data: {'gid': gid},
         success: function (data) {
-            alert(data);
+            // alert(data);
             var info = JSON.parse(data);
             if (info.status == 0) {
                 document.getElementById('goodsphoto1').src = info.goodsphoto1;
@@ -53,7 +53,6 @@ $( document ).ready(function() {
 });
 
 $('#buy').click(function () {
-    // document.getElementById("photo2").src = "resource/sample3.jpg";
     var Request = new Object();
     Request = GetRequest();
     var gid;
@@ -83,36 +82,4 @@ $('#buy').click(function () {
             alert(JSON.stringify(xhr));
         }
     });
-// 	var fd = new FormData();
-//     alert(fd);
-// 	fd.append('name', $('#name').val());
-// 	fd.append('price', $('#price').val());
-// 	fd.append('newness', $('#newness').val());
-// 	fd.append('mainCate', $('#mainCate').prop('selectedIndex'));
-// 	fd.append('nextCate', $('#nextCate').prop('selectedIndex'));
-// 	fd.append('photo1', $('#photo1')[0].files[0]);
-// 	fd.append('photo2', $('#photo2')[0].files[0]);
-// 	fd.append('photo3', $('#photo3')[0].files[0]);
-// 	fd.append('description', $('#description').val());
-//   alert(fd);
-// 	$.ajax({
-// 		type: 'post',
-// 		/* ? */
-// 		url: 'php/sell.php',
-// 		data: fd,
-//     processData:false,   //  告诉jquery不要处理发送的数据
-//     contentType:false,  
-// 		success: function (data) {
-// 			var obj = JSON.parse(data);
-// 			if (obj.status === 0) {
-// 				alert("上传成功！");
-// 			}
-// 			if (obj.status === 1) {
-// 				alert("上传失败！");
-// 			}
-// 		},
-// 		error: function (xhr) {
-// 			alert(JSON.stringify(xhr));
-// 		}
-// 	});
 });

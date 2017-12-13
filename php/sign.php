@@ -1,4 +1,6 @@
 <?php
+include 'sendmailfunction.php';
+
 $private_key = '-----BEGIN PRIVATE KEY-----
 MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAOc8No/Q57NSIeeL
 Pb1WtUunj4SNdNLDoj9GoppJuy5W+g9TOeaVQO9MVYLpw+LvmRQag5vC8il2LFeg
@@ -42,6 +44,13 @@ openssl_private_decrypt($encrypt_wechatID, $wechatID, $private_key);
 //$qq = $_POST['qq'];
 $qq = "0";
 
+// mail message
+$mail_subject = "【二货】注册邮箱验证";
+$mail_to = "1400012782@pku.edu.cn";//$uid;
+$mail_message1 = $username."，您好：<br>"."    感谢您使用二货二手物品交易平台！请点击如下链接，以完成注册：<br>		";
+$mail_message2 = "<br>		（如果不能点击该链接地址，请复制并粘贴到浏览器的地址输入框）
+								<br><br>								二货二手物品交易平台<br>								".date("Y-m-d");
+			
 // connect mysql
 $mysql_server_name = 'localhost';
 $mysql_user_name = 'group3';
@@ -75,23 +84,79 @@ if($result = mysqli_query($con, $checksql))
 				$status = 2;					// remind the user to active the account
 				
 				// !!!send the email again or not????
-				
+				$row = mysqli_fetch_assoc($result);
+				$regtime = $row["regTime"];
+				$regcount = $row["regCount"];
+				$token = $row["token"];
+				date_default_timezone_set("PRC");
+				$nowtime = time();
+				if($nowtime - $regtime <= 24*60*60)// in a day
+				{
+					if($regcount)
+					{
+						$regcount = $regcount - 1;
+						$change_sql = "UPDATE InactiveUser SET regCount = '{$regcount}' WHERE uid = '{$uid}';";
+						mysqli_query($con, $change_sql);
+						
+						$file_url = $_SERVER['SCRIPT_FILENAME'];
+						$dir_url = dirname($file_url);
+						$url = $dir_url."/active.php?uid=".$uid."&token=".$token;
+						
+						// !!!send again						
+						$mail_message = $mail_message1.$url.$mail_message2;
+						sendmail($mail_to, $mail_subject, $mail_message);
+					}
+				}
+				else	// out of a day, renew
+				{
+					$regcount = 3;
+					$regtime = $nowtime;					
+					// new token
+					$token = md5($uid.$passwd.$regtime);
+					// restore in mysql
+
+					$change_sql = "UPDATE InactiveUser SET regCount = '{$regcount}', regTime = '{$regtime}',
+									token = '{$token}' WHERE uid = '{$uid}';";
+					mysqli_query($con, $change_sql);
+					
+					// !!!send new mail again
+					$file_url = $_SERVER['SCRIPT_FILENAME'];
+					$dir_url = dirname($file_url);
+					$url = $dir_url."/active.php?uid=".$uid."&token=".$token;
+					
+					// !!!send again						
+					$mail_message = $mail_message1.$url.$mail_message2;
+					sendmail($mail_to, $mail_subject, $mail_message);
+				}
 			}
 			else								// user not exist, insert a user
 			{
 				//echo $passwd."\n";
 				$salt = base64_encode(mcrypt_create_iv(32, MCRYPT_DEV_RANDOM));
 				$passwd = sha1($passwd.$salt);
+				
+				date_default_timezone_set("PRC");
+				$regtime = time();
+				$regcount = 3;
+				$token = md5($uid.$passwd.$regtime);// use to active
 				//echo $salt."\n";
 				//echo $passwd."\n";
+				
+				$file_url = $_SERVER['SCRIPT_FILENAME'];
+				$dir_url = dirname($file_url);
+				$url = $dir_url."/active.php?uid=".$uid."&token=".$token;
+				//echo $url;
+				
 				$sql = "INSERT INTO InactiveUser (uid, passwd, username, school, gender,
-						grade, tel, wechatID, qq, salt) VALUES ('{$uid}', '{$passwd}', 
+						grade, tel, wechatID, qq, salt, regTime, regCount, token) VALUES ('{$uid}', '{$passwd}', 
 						'{$username}', {$school}, {$gender}, {$grade}, '{$tel}', 
-						'{$wechatID}', '{$qq}', '{$salt}');";
+						'{$wechatID}', '{$qq}', '{$salt}', '{$regtime}', '{$regcount}', '{$token}');";
 				mysqli_query($con, $sql);
 				
-				// !!!send email
-				
+				// !!!send email				
+				$mail_message = $mail_message1.$url.$mail_message2;
+				sendmail($mail_to, $mail_subject, $mail_message);
+
 				$status = 0;
 			}
 		}

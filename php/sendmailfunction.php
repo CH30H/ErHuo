@@ -9,7 +9,7 @@ function sendmail($to, $copy_to, $subject, $body){
 	require 'src/Exception.php';
 	require 'src/PHPMailer.php';
 	require 'src/SMTP.php';
-        echo 'get';
+        //echo 'get';
 	$mail = new PHPMailer(true);
 	$mail->Charset = 'UTF-8';
 	try{

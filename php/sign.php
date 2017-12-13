@@ -103,7 +103,7 @@ if($result = mysqli_query($con, $checksql))
 						$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 						
 						// !!!send again						
-						$mail_message = $mail_message1.$url.$mail_message2;
+						$mail_message = $mail_message1."<a href='".$url."'>{$url}</a>".$mail_message2;
 						sendmail($mail_to, $mail_subject, $mail_message);
 					}
 				}
@@ -133,7 +133,7 @@ if($result = mysqli_query($con, $checksql))
 					$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 					
 					// !!!send again						
-					$mail_message = $mail_message1.$url.$mail_message2;
+					$mail_message = $mail_message1."<a href='".$url."'>{$url}</a>".$mail_message2;
 					sendmail($mail_to, $mail_subject, $mail_message);
 				}
 			}
@@ -162,7 +162,7 @@ if($result = mysqli_query($con, $checksql))
 				mysqli_query($con, $sql);
 				
 				// !!!send email				
-				$mail_message = $mail_message1.$url.$mail_message2;
+				$mail_message = $mail_message1."<a href='".$url."'>{$url}</a>".$mail_message2;
 				sendmail($mail_to, $mail_subject, $mail_message);
 
 				$status = 0;

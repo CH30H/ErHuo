@@ -37,8 +37,12 @@ $( document ).ready(function() {
                 document.getElementById('newness').innerHTML = "出价： ￥" + info.price;
                 document.getElementById('newness').innerHTML = "新旧程度： " + info.newness;
             }
-            if (info.status == 1) {
-                alert("该商品已下架！");
+            else if (info.status == 1) {
+                alert("该商品已下架！点击返回商品浏览页面");
+                self.location = "Shop.html";
+            }
+            else {
+                alert("something is wrong...");
             }
         },
         error: function (xhr) {
@@ -62,13 +66,14 @@ $('#buy').click(function () {
             if(obj.status == 0) {
                 alert("您的购买请求已经发送给卖家，请等候卖家邮件回复！");
             }
-            if(status == 1) {
+            else if(status == 1) {
                 alert("该商品已下架，请挑选其他商品！");
             }
-            if(status == 2) {
+            else if(status == 2) {
                 alert("登录超时，请重新登录！");
             }
-            if(status == 3) {
+            // if(status == 3) {
+            else {    
                 alert("系统异常...");
             }
         },

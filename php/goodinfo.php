@@ -37,6 +37,20 @@ while($row = mysqli_fetch_array($result)){
 	$good_info = array();
 	$json_good_info = array();
 	
+	//check if good's been sold
+	$good_info['selled'] = $row['selled'];
+	if($good_info['selled']){
+		$status = 1;
+		$arr = array('status'=>$status);
+        	echo json_encode($arr);
+		break;
+	}
+
+	//return status
+	$status = 0;
+	$arr = array('status'=>$status);
+   	echo json_encode($arr);
+
 	//assignment
 	$good_info['gid'] = $gid;
 	$good_info['goodsname'] = $row['goodsname'];
@@ -50,7 +64,7 @@ while($row = mysqli_fetch_array($result)){
 	$good_info['descriptor1'] = $row['descriptor1'];
 	$good_info['descriptor2'] = $row['descriptor2'];
 	$good_info['description'] = $row['description'];
-	$good_info['selled'] = $row['selled'];
+	
 	$json_good_info = json_encode($good_info);
 	echo $json_good_info;
 }

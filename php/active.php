@@ -1,4 +1,5 @@
 <?php
+header('Content-Type:text/plain;charset=utf-8');
 $token = $_GET['token'];
 $uid = $_GET['uid'];
 //file_put_contents("test_active.txt", $uid, FILE_APPEND);

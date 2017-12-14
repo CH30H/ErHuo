@@ -46,7 +46,7 @@ $qq = "0";
 
 // mail message
 $mail_subject = "【二货】注册邮箱验证";
-$mail_to = $uid;
+$mail_to = "1400012782@pku.edu.cn";//$uid;
 $mail_message1 = $username."，您好：<br>"."    感谢您使用二货二手物品交易平台！请点击如下链接，以完成注册：<br>		";
 $mail_message2 = "<br>		（如果不能点击该链接地址，请复制并粘贴到浏览器的地址输入框）
 								<br><br>								二货二手物品交易平台<br>								".date("Y-m-d");
@@ -98,7 +98,7 @@ if($result = mysqli_query($con, $checksql))
 						$change_sql = "UPDATE InactiveUser SET regCount = '{$regcount}' WHERE uid = '{$uid}';";
 						mysqli_query($con, $change_sql);
 						
-						$file_url = $_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+						$file_url = $_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
 						$dir_url = dirname($file_url);
 						$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 						
@@ -128,7 +128,7 @@ if($result = mysqli_query($con, $checksql))
 					mysqli_query($con, $insert_sql);
 					
 					// !!!send new mail again
-					$file_url = $_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+					$file_url = $_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
 					$dir_url = dirname($file_url);
 					$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 					
@@ -150,7 +150,7 @@ if($result = mysqli_query($con, $checksql))
 				//echo $salt."\n";
 				//echo $passwd."\n";
 				
-				$file_url = $_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+				$file_url = $_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
 				$dir_url = dirname($file_url);
 				$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 				//echo $url;

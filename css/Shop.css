@@ -11,6 +11,10 @@ span {
   float: right;
 }
 
+img {
+  height: 123px;
+}
+
 #wrap {
   width: 100%;
   margin: 10vh auto auto;
@@ -29,13 +33,22 @@ span {
   border-radius: 10px;
   overflow: hidden;
 }
+
+#page {
+  position: absolute;
+  left: 40%;
+  bottom: 0;
+}
 /*
 #pddisplay {
   height: 600px;
 }
 */
 .cell {
-	height: 120px;
+  border: 1px solid #909090;
+  margin-top: 6px;
+	height: 125px;
+  box-sizing: border-box;
 }
 
 .panel-group {

@@ -15,20 +15,20 @@ function displayPage(page)
   for (i = (page - 1) * 5 + 1; i <= Math.min(page * 5, product.length - 1); ++i)
   {
     $("#cell" + ((i - 1) % 5 + 1)).css('display', '');
-    $("#cell" + ((i - 1) % 5 + 1) + " img").attr('src', product[i].goodsphoto1);
+    $("#cell" + ((i - 1) % 5 + 1) + " img").attr('src', "photos/" + product[i].goodsphoto1);
     $("#cell" + ((i - 1) % 5 + 1) + " h3").text(product[i].goodsname);
-    $("#cell" + ((i - 1) % 5 + 1) + " h5:first").text(product[i].price);
-    $("#cell" + ((i - 1) % 5 + 1) + " h5:first").next().text(product[i].newness);
+    $("#cell" + ((i - 1) % 5 + 1) + " h5:first").text("price: " + product[i].price);
+    $("#cell" + ((i - 1) % 5 + 1) + " h5:first").next().text("newness: " + product[i].newness);
     $("#cell" + ((i - 1) % 5 + 1) + " small").text(product[i].descriptor1 + '-' + product[i].descriptor2);
     $("#cell" + ((i - 1) % 5 + 1) + " p").text(product[i].description);
-    $("#cell" + ((i - 1) % 5 + 1)).click({gid: i}, openNew);
+    $("#cell" + ((i - 1) % 5 + 1)).click({gid: product[i].gid}, openNew);
   }
 }
 
 $(function(){
   $.ajax({
 		type: 'post',
-		url: 'php/tag_search.php',
+		url: 'php/tag_search2.php',
 		data: {type: 0, descriptor1: 0},
 		datatype: 'json',
 		success: function(data) {
@@ -82,7 +82,7 @@ var tag1Name = ['', 'Book', 'Electronic Product', 'Ticket', 'Commodity', 'Other'
 $('.list-group a').click(function() {
    $.ajax({
 		type: 'post',
-		url: 'php/tag_search.php',
+		url: 'php/tag_search2.php',
 		data: {type: tag1Name[$(this).attr('tag1')], descriptor1: $(this).text()},
 		success: function(data) {
 			product = JSON.parse(data).slice();
@@ -97,7 +97,7 @@ $('.list-group a').click(function() {
 $('#search').click(function() {
    $.ajax({
 		type: 'post',
-		url: 'php/context_search.php',
+		url: 'php/context_search2.php',
 		data: {context: $('#content').val()},
 		success: function(data) {
 			product = JSON.parse(data).slice();

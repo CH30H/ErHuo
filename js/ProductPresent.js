@@ -31,12 +31,13 @@ $( document ).ready(function() {
             // alert(data);
             var info = JSON.parse(data);
             if (info.status == 0) {
-                document.getElementById('goodsphoto1').src = info.goodsphoto1;
-                document.getElementById('goodsphoto2').src = info.goodsphoto2;
-                document.getElementById('goodsphoto3').src = info.goodsphoto3;
+                photo_prefix = "photos/";
+                document.getElementById('goodsphoto1').src = photo_prefix + info.goodsphoto1;
+                document.getElementById('goodsphoto2').src = photo_prefix + info.goodsphoto2;
+                document.getElementById('goodsphoto3').src = photo_prefix + info.goodsphoto3;
                 document.getElementById('goodsname').innerHTML = info.goodsname;
-                document.getElementById('price').innerHTML = "出价： ￥" + info.price;
-                document.getElementById('newness').innerHTML = "新旧程度： " + info.newness;
+                document.getElementById('price').innerHTML = "Price: ￥" + info.price;
+                document.getElementById('newness').innerHTML = "Newness: " + info.newness;
             }
             else if (info.status == 1) {
                 alert("该商品已下架！点击返回商品浏览页面");
@@ -62,7 +63,6 @@ $('#buy').click(function () {
         url: 'php/buy.php',
         data: {"gid" : gid},
         success: function (data) {
-            alert(data);
             var obj = JSON.parse(data);
             if(obj.status == 0) {
                 alert("您的购买请求已经发送给卖家，请等候卖家邮件回复！");

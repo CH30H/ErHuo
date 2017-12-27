@@ -3,6 +3,8 @@
 //include mail function
 require_once('sendmailfunction.php');
 
+//setcookie("uid", "1055734930@qq.com", time()+3600*24);
+
 $servername = 'localhost';  //?
 $username = 'group3';
 $passwd = 'group3';

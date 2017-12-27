@@ -46,7 +46,7 @@ $qq = "0";
 
 // mail message
 $mail_subject = "【二货】注册邮箱验证";
-$mail_to = "1400012782@pku.edu.cn";//$uid;
+$mail_to = $uid;
 $mail_message1 = $username."，您好：<br>"."    感谢您使用二货二手物品交易平台！请点击如下链接，以完成注册：<br>		";
 $mail_message2 = "<br>		（如果不能点击该链接地址，请复制并粘贴到浏览器的地址输入框）
 								<br><br>								二货二手物品交易平台<br>								".date("Y-m-d");
@@ -73,6 +73,13 @@ if($result = mysqli_query($con, $checksql))
 	if(mysqli_num_rows($result))		// user exist
 	{
 		$status = 1;
+		mysqli_close($con);				// disconnect mysql
+
+		//echo $status;
+		$arr = array('status'=>$status);
+		$json_b2f = json_encode($arr);
+		echo $json_b2f;
+		die();
 	}
 	else								// user don't exist in User
 	{
@@ -82,7 +89,10 @@ if($result = mysqli_query($con, $checksql))
 			if(mysqli_num_rows($result))		// user exist in InactiveUser
 			{
 				$status = 2;					// remind the user to active the account
-				
+				$arr = array('status'=>$status);
+				$json_b2f = json_encode($arr);
+				echo $json_b2f;
+
 				// !!!send the email again or not????
 				$row = mysqli_fetch_assoc($result);
 				$regtime = $row["regTime"];
@@ -102,10 +112,15 @@ if($result = mysqli_query($con, $checksql))
 						$dir_url = dirname($file_url);
 						$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 						
+						mysqli_close($con);
+						
 						// !!!send again						
 						$mail_message = $mail_message1."<a href='".$url."'>{$url}</a>".$mail_message2;
 						sendmail($mail_to, $mail_subject, $mail_message);
+						die();
 					}
+					mysqli_close($con);
+					die();
 				}
 				else	// out of a day, renew
 				{
@@ -132,13 +147,21 @@ if($result = mysqli_query($con, $checksql))
 					$dir_url = dirname($file_url);
 					$url = "http://".$dir_url."/active.php?uid=".$uid."&token=".$token;
 					
+					mysqli_close($con);
+					
 					// !!!send again						
 					$mail_message = $mail_message1."<a href='".$url."'>{$url}</a>".$mail_message2;
 					sendmail($mail_to, $mail_subject, $mail_message);
+					die();
 				}
 			}
 			else								// user not exist, insert a user
 			{
+				$status = 0;
+				$arr = array('status'=>$status);
+				$json_b2f = json_encode($arr);
+				echo $json_b2f;
+				
 				//echo $passwd."\n";
 				$salt = base64_encode(mcrypt_create_iv(32, MCRYPT_DEV_RANDOM));
 				$passwd = sha1($passwd.$salt);
@@ -160,12 +183,13 @@ if($result = mysqli_query($con, $checksql))
 						'{$username}', {$school}, {$gender}, {$grade}, '{$tel}', 
 						'{$wechatID}', '{$qq}', '{$salt}', '{$regtime}', '{$regcount}', '{$token}');";
 				mysqli_query($con, $sql);
+				mysqli_close($con);
 				
 				// !!!send email				
 				$mail_message = $mail_message1."<a href='".$url."'>{$url}</a>".$mail_message2;
 				sendmail($mail_to, $mail_subject, $mail_message);
-
-				$status = 0;
+				
+				die();
 			}
 		}
 		else							// sql query wrong
@@ -174,9 +198,9 @@ if($result = mysqli_query($con, $checksql))
 			$arr = array('status'=>$status);
 			$json_b2f = json_encode($arr);
 			echo $json_b2f;
+			mysqli_close($con);
 			die();
 		}
-
 	}
 }
 else
@@ -185,13 +209,9 @@ else
 	$arr = array('status'=>$status);
 	$json_b2f = json_encode($arr);
 	echo $json_b2f;
+	mysqli_close($con);
 	die();
 }
 
 mysqli_close($con);				// disconnect mysql
-
-//echo $status;
-$arr = array('status'=>$status);
-$json_b2f = json_encode($arr);
-echo $json_b2f;
 ?>

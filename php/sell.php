@@ -25,9 +25,9 @@ for($i = 1;$i <= 3;$i++)
 	{
 		$fileinfo = $_FILES[$filename];
 		file_put_contents("test.txt", var_export($fileinfo, true)."\n", FILE_APPEND);
-
-		$uploadway = $uploaddir.$_FILES[$filename]['name'];
-		$$filename = $_FILES[$filename]['name'];
+		$$filename = time().$i.".".pathinfo($_FILES[$filename]['name'], PATHINFO_EXTENSION);//.".jpg";
+		$uploadway = $uploaddir.$$filename;//$_FILES[$filename]['name'];
+		//$$filename = $_FILES[$filename]['name'];
 		
 		if(!move_uploaded_file($_FILES[$filename]['tmp_name'], $uploadway)) // upload file
 		{

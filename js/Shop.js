@@ -28,7 +28,7 @@ function displayPage(page)
 $(function(){
   $.ajax({
 		type: 'post',
-		url: 'php/tag_search2.php',
+		url: 'php/tag_search.php',
 		data: {type: 0, descriptor1: 0},
 		datatype: 'json',
 		success: function(data) {
@@ -82,7 +82,7 @@ var tag1Name = ['', 'Book', 'Electronic Product', 'Ticket', 'Commodity', 'Other'
 $('.list-group a').click(function() {
    $.ajax({
 		type: 'post',
-		url: 'php/tag_search2.php',
+		url: 'php/tag_search.php',
 		data: {type: tag1Name[$(this).attr('tag1')], descriptor1: $(this).text()},
 		success: function(data) {
 			product = JSON.parse(data).slice();
@@ -97,7 +97,7 @@ $('.list-group a').click(function() {
 $('#search').click(function() {
    $.ajax({
 		type: 'post',
-		url: 'php/context_search2.php',
+		url: 'php/context_search.php',
 		data: {context: $('#content').val()},
 		success: function(data) {
 			product = JSON.parse(data).slice();

@@ -13,11 +13,34 @@ if(!$conn){
     die('Could not connect: ' .  mysqli_connect_error());  
 }
 
+$array_search1 = array('Book'=>'1', 'Electronic Product'=>'2', 'Ticket'=>'3', 'Commodity'=>'4', 'Other'=>'5');
 
 
+$array_search2 = array('Book'=>array('Other'=>'0','Textbook'=>'1','Foreign Language'=>'2','Art'=>'3','Novel'=>'4','Magazine'=>'5','Manga'=>'6','Reference Book'=>'7'),
+    'Electronic Product'=>array('Other'=>'0','Mobile Phone'=>'1','Laptop'=>'2','Tablet'=>'3','Camera'=>'4','Peripheral'=>'5','PC Component'=>'6'),
+    'Ticket'=>array('Other'=>'0','Movie Ticket'=>'1','Concert Ticket'=>'2','Art'=>'3','Exhibition Ticket'=>'4','Comics Show Ticket'=>'5'),
+    'Commodity'=>array('Other'=>'0'),
+    'Other'=>array('Other'=>'0')
+);
 
-$sql = "select * from Goods where goodsname LIKE '%$t1%' or  description LIKE '%$t1%' ";
+$array_search3 = array('1'=>'Book', '2'=>'Electronic Product', '3'=>'Ticket', '4'=>'Commodity', '5'=>'Other');
 
+
+$array_search4 = array('1'=>array('0'=>'Other','1'=>'Textbook','2'=>'Foreign Language','3'=>'Art','4'=>'Novel','5'=>'Magazine','6'=>'Manga','7'=>'Reference Book'),
+    '2'=>array('0'=>'Other','1'=>'Mobile Phone','2'=>'Laptop','3'=>'Tablet','4'=>'Camera','5'=>'Peripheral','6'=>'PC Component'),
+    '3'=>array('0'=>'Other','1'=>'Movie Ticket','2'=>'Concert Ticket','3'=>'Art','4'=>'Exhibition Ticket','5'=>'Comics Show Ticket'),
+    '4'=>array('0'=>'Other'),
+    '5'=>array('0'=>'Other')
+);
+
+
+if($t1 == "0"){
+    $sql = "select * from Goods";
+}
+
+else{
+$sql = "select * from Goods where goodsname LIKE '%".$t1."%' or  description LIKE '%".$t1."%' ";
+}
 /*
 $result = mysqli_query($conn,$sql);
 $num0 = mysqli_num_rows($result);
@@ -98,8 +121,10 @@ for($i =0 ; $i<$num;$i++) {
     $myarr['goodsphoto2'] = $row[6];
     $myarr['goodsphoto3'] = $row[7];
     $myarr['type'] = $row[8];
-    $myarr['descriptor1'] = $row[9];
-    $myarr['descriptor2'] = $row[10];
+    $rn1 = $array_search3[$row[9]];
+    $myarr['descriptor1'] = $rn1;
+    $rn2 = $array_search4[$row[9]][$row[10]];
+    $myarr['descriptor2'] = $rn2;
     $myarr['description'] = $row[11];
     $myarr['selled'] = $row[12];
     array_push($json_arr, $myarr);
